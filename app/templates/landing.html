@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex flex-col items-center justify-center min-h-[80vh] text-center">
+    <div class="mb-8 relative group">
+        <div
+            class="absolute -inset-1 bg-gradient-to-r from-pink-600 to-purple-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200">
+        </div>
+        <div class="relative px-7 py-4 bg-black rounded-full leading-none flex items-center">
+            <span class="text-5xl">✨</span>
+        </div>
+    </div>
+
+    <h1
+        class="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 animate-pulse">
+        Emotion Analyzer
+    </h1>
+
+    <p class="text-xl md:text-2xl text-slate-300 mb-12 max-w-2xl mx-auto font-light">
+        Real-time emotional insight from your webcam using advanced AI.
+        <br>Discover what your face is saying.
+    </p>
+
+    <div class="flex flex-col md:flex-row gap-6">
+        <a href="{{ url_for('auth.signup') }}"
+            class="px-8 py-4 bg-white text-purple-900 rounded-full font-bold text-lg hover:bg-purple-100 transition transform hover:scale-105 shadow-xl">
+            Get Started
+        </a>
+        <a href="{{ url_for('auth.login') }}"
+            class="px-8 py-4 bg-transparent border-2 border-white/30 text-white rounded-full font-bold text-lg hover:bg-white/10 transition transform hover:scale-105 backdrop-blur-sm">
+            Login
+        </a>
+    </div>
+
+    <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl w-full">
+        <div class="glass p-6 rounded-2xl">
+            <div class="text-4xl mb-4">⚡</div>
+            <h3 class="text-xl font-bold mb-2">Real-Time</h3>
+            <p class="text-slate-300">Instant analysis of your facial expressions.</p>
+        </div>
+        <div class="glass p-6 rounded-2xl">
+            <div class="text-4xl mb-4">🔒</div>
+            <h3 class="text-xl font-bold mb-2">Private</h3>
+            <p class="text-slate-300">Processing happens securely. Your data is yours.</p>
+        </div>
+        <div class="glass p-6 rounded-2xl">
+            <div class="text-4xl mb-4">🎯</div>
+            <h3 class="text-xl font-bold mb-2">Accurate</h3>
+            <p class="text-slate-300">Powered by advanced deep learning models.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

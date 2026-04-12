@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+.video-container {
+position: relative;
+border-radius: 24px;
+overflow: hidden;
+box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+video {
+transform: scaleX(-1);
+/* Mirror effect */
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+canvas {
+position: absolute;
+top: 0;
+left: 0;
+transform: scaleX(-1);
+/* Mirror effect for canvas too */
+}
+
+.emotion-card {
+transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom scrollbar hide */
+::-webkit-scrollbar {
+display: none;
+}
+</style>
+</head>
+
+<body class="bg-slate-200 min-h-screen flex flex-col items-center justify-center p-4 py-12">
+
+    <!-- Main Container -->
+    <main class="relative w-full max-w-4xl flex flex-col items-center gap-8 z-10">
+
+        <!-- Header -->
+        <header class="text-center mb-2">
+            <h1 class="text-3xl md:text-4xl font-semibold text-slate-800/80 tracking-wide">Calm Mirror</h1>
+            <p class="text-slate-600/70 text-sm mt-1">Reflect your inner state</p>
+        </header>
+
+        <!-- Video Card -->
+        <div class="video-container w-full max-w-2xl aspect-[4/3] bg-white/10 relative group">
+            <!-- Loading Overlay -->
+            <div id="loader"
+                class="absolute inset-0 z-20 flex flex-col items-center justify-center bg-white/50 backdrop-blur-sm transition-opacity duration-500">
+                <div class="w-12 h-12 border-4 border-blue-400 border-t-transparent rounded-full animate-spin mb-4">
+                </div>
+                <p id="status-text" class="text-slate-700 font-medium animate-pulse">Loading AI Models...</p>
+            </div>
+
+            <video id="video" autoplay muted playsinline></video>
+            <!-- Canvas will be appended here by script -->
+        </div>
+
+        <!-- Emotion Card -->
+        <div id="emotion-card"
+            class="glass-panel emotion-card rounded-3xl px-12 py-6 flex flex-col items-center justify-center min-w-[280px] transform hover:scale-105">
+            <div id="emoji-display"
+                class="text-6xl md:text-7xl mb-2 filter drop-shadow-lg transition-transform duration-300 hover:rotate-12">
+                😐</div>
+            <h2 id="emotion-label" class="text-2xl md:text-3xl font-semibold text-slate-800 tracking-wider capitalize">
+                Neutral</h2>
+            <div class="w-16 h-1 bg-slate-800/10 rounded-full mt-4"></div>
+        </div>
+
+    </main>
+
+    <!-- Background Blobs for aesthetics -->
+    <div
+<!DOCTYPE html>
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+.video-container {
+position: relative;
+border-radius: 24px;
+overflow: hidden;
+box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+video {
+transform: scaleX(-1);
+/* Mirror effect */
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+canvas {
+position: absolute;
+top: 0;
+left: 0;
+transform: scaleX(-1);
+/* Mirror effect for canvas too */
+}
+
+.emotion-card {
+transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom scrollbar hide */
+::-webkit-scrollbar {
+display: none;
+}
+</style>
+</head>
+
+<body class="bg-slate-200 min-h-screen flex flex-col items-center justify-center p-4 py-12">
+
+    <!-- Main Container -->
+    <main class="relative w-full max-w-4xl flex flex-col items-center gap-8 z-10">
+
+        <!-- Header -->
+        <header class="text-center mb-2">
+            <h1 class="text-3xl md:text-4xl font-semibold text-slate-800/80 tracking-wide">Calm Mirror</h1>
+            <p class="text-slate-600/70 text-sm mt-1">Reflect your inner state</p>
+        </header>
+
+        <!-- Video Card -->
+        <div class="video-container w-full max-w-2xl aspect-[4/3] bg-white/10 relative group">
+            <!-- Loading Overlay -->
+            <div id="loader"
+                class="absolute inset-0 z-20 flex flex-col items-center justify-center bg-white/50 backdrop-blur-sm transition-opacity duration-500">
+                <div class="w-12 h-12 border-4 border-blue-400 border-t-transparent rounded-full animate-spin mb-4">
+                </div>
+                <p id="status-text" class="text-slate-700 font-medium animate-pulse">Loading AI Models...</p>
+            </div>
+
+            <video id="video" autoplay muted playsinline></video>
+            <!-- Canvas will be appended here by script -->
+        </div>
+
+        <!-- Emotion Card -->
+        <div id="emotion-card"
+            class="glass-panel emotion-card rounded-3xl px-12 py-6 flex flex-col items-center justify-center min-w-[280px] transform hover:scale-105">
+            <div id="emoji-display"
+                class="text-6xl md:text-7xl mb-2 filter drop-shadow-lg transition-transform duration-300 hover:rotate-12">
+                😐</div>
+            <h2 id="emotion-label" class="text-2xl md:text-3xl font-semibold text-slate-800 tracking-wider capitalize">
+                Neutral</h2>
+            <div class="w-16 h-1 bg-slate-800/10 rounded-full mt-4"></div>
+        </div>
+
+    </main>
+
+    <!-- Background Blobs for aesthetics -->
+    <div
+        class="fixed top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-blue-300/30 rounded-full blur-[100px] pointer-events-none mix-blend-multiply animate-blob">
+    </div>
+    <div
+        class="fixed bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-purple-300/30 rounded-full blur-[100px] pointer-events-none mix-blend-multiply animate-blob animation-delay-2000">
+    </div>
+
+    <script>
+        // Configuration
+        const SMOOTHING_WINDOW = 5; // Reduced smoothing for faster response
+
+        // DOM Elements
+        const video = document.getElementById('video');
+        const loader = document.getElementById('loader');
+        const statusText = document.getElementById('status-text');
+        const emotionCard = document.getElementById('emotion-card');
+        const emojiDisplay = document.getElementById('emoji-display');
+        const emotionLabel = document.getElementById('emotion-label');
+        const body = document.body;
+
+        // State
+        let emotionHistory = [];
+        let currentEmotion = 'neutral';
+        let isProcessing = false;
+
+        // Emotion Mappings (Color & Emoji)
+        // Updated keys to match FER library output
+        const emotionMap = {
+            neutral: { color: '#e2e8f0', emoji: '😐', label: 'Neutral' },
+            happy: { color: '#fef9c3', emoji: '😊', label: 'Happy' },
+            sad: { color: '#dbeafe', emoji: '😔', label: 'Sad' },
+            angry: { color: '#fee2e2', emoji: '😠', label: 'Angry' },
+            fear: { color: '#f3e8ff', emoji: '😨', label: 'Fearful' },      // FER returns 'fear'
+            disgust: { color: '#dcfce7', emoji: '🤢', label: 'Disgusted' }, // FER returns 'disgust'
+            surprise: { color: '#ccfbf1', emoji: '😲', label: 'Surprised' }  // FER returns 'surprise'
+        };
+
+        // 1. Initialize Application
+        async function init() {
+            try {
+                await startVideo();
+                startDetectionLoop();
+            } catch (error) {
+                console.error("Initialization failed:", error);
+                statusText.innerText = "Error: " + error.message;
+                statusText.classList.remove('animate-pulse');
+                statusText.classList.add('text-red-600');
+            }
+        }
+
+        // 2. Start Webcam
+        async function startVideo() {
+            statusText.innerText = "Accessing Camera...";
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: {} });
+                video.srcObject = stream;
+                
+                // Hide Loader once video plays
+                video.onloadedmetadata = () => {
+                    loader.style.opacity = '0';
+                    setTimeout(() => loader.style.display = 'none', 500);
+                };
+            } catch (err) {
+                throw new Error("Camera access denied or not available.");
+            }
+        }
+
+        // 3. Detection Loop
+        function startDetectionLoop() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            setInterval(async () => {
+                if (isProcessing || video.paused || video.ended) return;
+
+                isProcessing = true;
+
+                try {
+                    // Capture frame
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                    
+                    const imageData = canvas.toDataURL('image/jpeg', 0.8);
+
+                    // Send to backend
+                    const response = await fetch('/detect_emotion', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ image: imageData })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.emotion) {
+                        updateEmotion(data.emotion);
+                    }
+
+                } catch (err) {
+                    console.error("Detection error:", err);
+                } finally {
+                    isProcessing = false;
+                }
+            }, 200); // Check every 200ms
+        }
+
+        // 4. Smoothing & UI Update Logic
+        function updateEmotion(newEmotion) {
+            // Add to history
+            emotionHistory.push(newEmotion);
+            if (emotionHistory.length > SMOOTHING_WINDOW) {
+                emotionHistory.shift();
+            }
+
+            // Calculate Mode
+            const counts = {};
+            let maxCount = 0;
+            let mode = currentEmotion;
+
+            for (const e of emotionHistory) {
+                counts[e] = (counts[e] || 0) + 1;
+                if (counts[e] > maxCount) {
+                    maxCount = counts[e];
+                    mode = e;
+                }
+            }
+
+            // Update UI
+            if (mode !== currentEmotion) {
+                currentEmotion = mode;
+                renderUI(currentEmotion);
+            }
+        }
+
+        // 5. Render UI
+        function renderUI(emotion) {
+            const data = emotionMap[emotion] || emotionMap.neutral;
+
+            // Update Text & Emoji
+            emojiDisplay.innerText = data.emoji;
+            emotionLabel.innerText = data.label;
+
+            // Update Background Color
+            body.style.backgroundColor = data.color;
+
+            // Animation
+            emotionCard.classList.add('scale-105');
+            setTimeout(() => emotionCard.classList.remove('scale-105'), 200);
+        }
+
+        // Start
+        init();
+
+    </script>
+</body>
+
+</html>

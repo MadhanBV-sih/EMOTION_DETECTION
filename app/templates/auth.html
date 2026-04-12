@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Lucide Icons Script -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<div class="fixed inset-0 flex items-center justify-center overflow-hidden -z-10">
+    <!-- Animated Gradient Blobs -->
+    <div
+        class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob">
+    </div>
+    <div
+        class="absolute top-[-10%] right-[-10%] w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000">
+    </div>
+    <div
+        class="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-pink-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000">
+    </div>
+</div>
+
+<div class="flex items-center justify-center min-h-[80vh] w-full px-4">
+    <div
+        class="glass relative p-10 rounded-3xl w-full max-w-md shadow-2xl border border-white/10 backdrop-blur-xl bg-black/40">
+
+        <!-- Header -->
+        <div class="text-center mb-10">
+            <h1
+                class="text-4xl font-black mb-2 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 tracking-tight">
+                Emotion Analyzer
+            </h1>
+            <p class="text-slate-400 text-sm font-medium">Sign in to access real-time sentiment detection.</p>
+        </div>
+
+        <form method="POST" class="space-y-6">
+            <!-- Username Input -->
+            <div class="relative group">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <i data-lucide="user"
+                        class="h-5 w-5 text-slate-500 group-focus-within:text-purple-400 transition-colors"></i>
+                </div>
+                <input type="text" name="username" required
+                    class="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-purple-500/50 focus:bg-white/10 text-white placeholder-slate-500 transition-all duration-300"
+                    placeholder="Username">
+            </div>
+
+            <!-- Password Input -->
+            <div class="relative group">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <i data-lucide="lock"
+                        class="h-5 w-5 text-slate-500 group-focus-within:text-purple-400 transition-colors"></i>
+                </div>
+                <input type="password" name="password" required
+                    class="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-purple-500/50 focus:bg-white/10 text-white placeholder-slate-500 transition-all duration-300"
+                    placeholder="••••••••">
+            </div>
+
+            <div class="flex justify-end">
+                <a href="#" class="text-xs text-slate-400 hover:text-white transition">Forgot Password?</a>
+            </div>
+
+            <!-- Primary Button -->
+            <button type="submit"
+                class="w-full py-3.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl font-bold text-white shadow-lg hover:shadow-purple-500/25 hover:opacity-90 transition transform hover:scale-[1.02] active:scale-[0.98]">
+                Sign In
+            </button>
+
+            <!-- Secondary Button -->
+            <button type="button"
+                class="w-full py-3.5 bg-transparent border border-white/20 rounded-xl font-semibold text-white hover:bg-white/5 transition flex items-center justify-center gap-3">
+                <svg class="w-5 h-5" viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z" />
+                </svg>
+                Continue with Google
+            </button>
+        </form>
+
+        <!-- Footer -->
+        <div class="mt-8 text-center">
+            <p class="text-slate-500 text-sm">
+                {% if mode == 'signup' %}
+                Already have an account? <a href="{{ url_for('auth.login') }}"
+                    class="text-purple-400 hover:text-purple-300 font-medium hover:underline">Sign In</a>
+                {% else %}
+                Don't have an account? <a href="{{ url_for('auth.signup') }}"
+                    class="text-purple-400 hover:text-purple-300 font-medium hover:underline">Create Account</a>
+                {% endif %}
+            </p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .glass {
+        background: rgba(17, 25, 40, 0.75);
+        backdrop-filter: blur(16px) saturate(180%);
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+    }
+
+    @keyframes blob {
+        0% {
+            transform: translate(0px, 0px) scale(1);
+        }
+
+        33% {
+            transform: translate(30px, -50px) scale(1.1);
+        }
+
+        66% {
+            transform: translate(-20px, 20px) scale(0.9);
+        }
+
+        100% {
+            transform: translate(0px, 0px) scale(1);
+        }
+    }
+
+    .animate-blob {
+        animation: blob 7s infinite;
+    }
+
+    .animation-delay-2000 {
+        animation-delay: 2s;
+    }
+
+    .animation-delay-4000 {
+        animation-delay: 4s;
+    }
+</style>
+
+<script>
+    lucide.createIcons();
+</script>
+{% endblock %}
